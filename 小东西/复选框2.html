@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div><input type="checkbox" onclick="allMail()">全选</div>
+  <div><input type="checkbox" name="mail" class="ipt" >1<br/></div>
+  <div><input type="checkbox" name="mail" class="ipt" >2<br/></div>
+  <div><input type="checkbox" name="mail" class="ipt" >3<br/></div>
+  <div><input type="checkbox" name="mail" class="ipt" >4<br/></div>
+  <div><input type="checkbox" name="mail" class="ipt" >5<br/></div>
+  <input type="button" value="删除按钮" onclick="delMail()">
+  <script>
+    // function delMail(){
+    //   var ipts =document.getElementsByClassName('ipt')
+    //   // 要从后向前循环 删除多个的时候会出现问题
+    //   for(var i =ipts.length-1 ; i >=0 ; i--){
+    //    var is_checked = ipts[i].checked
+    //    if(is_checked){
+    //      var iptItem = ipts[i].parentNode
+    //      iptItem.parentNode.removeChild(iptItem)
+    //    }
+    //   }
+    // }
+
+
+    function delMail(){
+      var ipts = document.getElementsByClassName('ipt')
+      //  多个同时删除的时候会出现问题 从后向前循环
+      for(var i = ipts.length - 1; i >= 0 ; i --){
+        // 被选中的ipt
+        if(ipts[i].checked){
+          // 直接删除父节点
+          ipts[i].parentNode.remove()
+        }
+      }
+    }
+
+   
+  </script>
+</body>
+</html>

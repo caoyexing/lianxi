@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+      var str = 'sdedadedsjojkmihuuhjklnmqwerty'
+       //定义一个对象，存储每个遍历的字符串和出现的次数；
+       var obj = {}
+       for (var i = 0; i < str.length; i++) {
+         //将每次循环，给char赋值，
+         var char = str.charAt(i)
+         //判断obj对象中是否有这字符，obj[char]如果没有，undefined，执行else
+         if (obj[char]) {
+         //如果有这个对象，则将字符串所对应的次数加1；
+           obj[char]++
+         } else {
+         //给这个对象赋值，代表出现了一次
+           obj[char] = 1
+         }
+       }
+       console.log(obj)
+       //定义一个最大值，遍历对象，获取次数最多的属性名和次数
+       var max = 0
+       //变量ch用来存储最后每次遍历对象他的属性名key；
+       var ch = ''
+       for (var k in obj) {
+         if (max < obj[k]) {
+           max = obj[k]
+           ch = k
+         }
+       }
+      console.log(max + '最大值是字符：' + ch)
+  </script>
+</body>
+</html>

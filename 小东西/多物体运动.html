@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .box{
+      height: 100px;
+      width: 100px;
+      background: #ddd;
+      margin-top: 20px;
+    }
+   
+  </style>
+</head>
+<body>
+  <div class="box"></div>
+  <div class="box"></div>
+  <script>
+    //问题是 继续用offset系列的 有序的代码很难继续
+    // getComputedStyle  获去元素的css的样式
+    var boxs = document.querySelectorAll('.box')
+    console.log(boxs)
+    for(var i = 0; i< boxs.length; i++){
+      // 给每个元素绑定的事件
+      boxs[0].onmouseover = function(){
+        
+        move(boxs[0],'height',200)
+      }
+      boxs[1].onmouseover = function(){
+        move(boxs[1],'width',200)
+      }
+    }
+    var timer = null
+    function move(ele,attr, target){
+      clearInterval(ele.timer)
+      ele.timer =setInterval(function(){
+        // getComputedStyle 得到的带有单位的px 将px去掉
+        var iNow = parseInt(getComputedStyle(ele)[attr])
+        var speed = (target - iNow) /10
+        if(speed > 0){
+          speed = Math.ceil(speed)
+        }else{
+          speed = Math.floor(speed)
+        }
+        // 元素的属性
+        ele.style[attr] = iNow +speed + 'px'
+        if(target === iNow){
+          clearInterval(ele.timer)
+        }
+      },50)
+      
+    }
+
+    // function move2(ele, target){
+    //   clearInterval(ele.timer)
+    //   ele.timer =setInterval(function(){
+    //     var speed = (target - ele.offsetWidth) /10
+    //     if(speed > 0){
+    //       speed = Math.ceil(speed)
+    //     }else{
+    //       speed = Math.floor(speed)
+    //     }
+    //     ele.style.width = ele.offsetWidth +speed + 'px'
+    //     if(target === ele.offsetWidth){
+    //       clearInterval(ele.timer)
+    //     }
+    //   },50)
+      
+    // }
+  </script>
+</body>
+</html>

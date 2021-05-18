@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    #box{
+      height: 100px;
+      width: 100px;
+      background: #ddd;
+      position: absolute;
+      left: 400;
+      
+    }
+    button{
+      margin-top: 150px;
+    }
+    .line{
+      height: 200px;
+      width: 2px;
+      background: #000;
+      position: absolute;
+      left: 200px;
+      top: 0;
+    }
+  </style>
+</head>
+<body>
+  <div id="box"></div>
+  <button id="btn">运动</button>
+  <div class="line"></div>
+  <script>
+    var box = document.getElementById('box')
+    var btn = document.getElementById('btn')
+    var timer =  null
+    btn.onclick= function(){
+      move(200)
+    }
+    function move(target){
+      // 开启定时器之前要关闭 定时器 确保只有一个定时器
+      clearInterval(timer)
+      timer = setInterval(function(){
+        var speed = (target  - box.offsetLeft) /10
+        // 判定速度的条件
+        if(speed>0){
+          speed = Math.ceil(speed)
+        }else{
+          speed = Math.floor(speed)
+        }
+        box.style.left = box.offsetLeft + speed + 'px'
+        if(box.offsetLeft === target){
+          clearInterval(timer)
+        }
+      },50)
+    }
+  </script>
+</body>
+</html>

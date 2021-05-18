@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+  <title>Document</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+
+    .container {
+      height: 286px;
+      width: 1130px;
+      position: relative;
+      margin: 0 auto;
+      overflow: hidden;
+    }
+
+    /* 不设定宽度 因为每次的轮播图不知道有几个图片 */
+    .wrapper {
+      position: absolute;
+      /* 每次滚定的图片的位置 第一张为0 第二章为 1130px */
+      left: 0;
+    }
+    .slide {
+      height: 286px;
+      width: 1130px;
+      float: left;
+    }
+    .slide img {
+      height: 100%;
+      width: 100%;
+    }
+    /*以btn为结尾的类名的div中的元素 */
+    div[class$=btn]{
+      font-size: 80px;
+      /* 定位 */
+      position: absolute;
+      /* 被覆盖 */
+      z-index: 999;
+      /* color: yellowgreen; */
+      /*  */
+      color: rgba(0,0,0,.4);
+      /* 定位 是以外部的relative 定位的 */
+      top: 50%;
+      margin-top: -40px;
+      line-height: 80px;
+    }
+    div[class$=btn]:hover{
+      transition: color .5s;
+      color: rgba(3,3,3,1);
+    }
+    .next_btn{
+      right: 0;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <div class="wrapper">
+      <div class="slide">
+        <img src="https://img.zcool.cn/community/012b575fade55011013fdcc7efcfbc.jpg" alt="">
+      </div>
+      <div class="slide">
+        <img src="https://img.zcool.cn/community/0182df5fae1f6511013fdcc7ba0d44.png" alt="">
+      </div>
+      <div class="slide">
+        <img src="https://img.zcool.cn/community/01909e5fae1f7b11013fdcc78487c6.png" alt="">
+      </div>
+      <div class="slide">
+        <img src="https://img.zcool.cn/community/0102d75fad17e511013ee04de1c0c2.jpg" alt="">
+      </div>
+      <div class="slide">
+        <img src="https://img.zcool.cn/community/01bccd5fac9c3c11013ee04da14ae9.png" alt="">
+      </div>
+      <div class="slide">
+        <img src="https://img.zcool.cn/community/0118355fae1f2a11013ee04d9d5b10.png" alt="">
+      </div>
+    </div>
+    <div class="prev_btn">
+      <i class="fa fa-chevron-left" aria-hidden="true"></i>
+    </div>
+    <div class="next_btn">
+      <i class="fa fa-chevron-right" aria-hidden="true"></i>
+    </div>
+  </div>
+  <script src="../common.js"></script>
+  <script>
+    // 给wrapper设定宽度
+    // 1 计算wrapper的宽度
+    var wrapper   = document.querySelector('.wrapper')
+    var slides    = document.querySelectorAll('.slide')
+    var container = document.querySelector('.container')
+    wrapper.style.width = slides[0].offsetWidth * slides.length + 'px'
+    // 2 绑定事件 点击按钮的是让下标切换
+    // 当前显示的下标
+    var index = 0
+    var prev_btn = document.querySelector('.prev_btn')
+    var next_btn = document.querySelector('.next_btn')
+    next_btn.onclick = function(){
+      // 要给index一个阈值  会一直加下去
+      if(index === slides.length - 1){
+        
+        index = 0
+
+        // 初始位置是index=0 切换之后变为是index= 1
+        // wrapper 的位移为0
+        // wrapper.style.left = 0
+        // index = 1
+      }else{
+        index ++;
+      }
+      // console.log(index)
+      
+      move(wrapper,"left",-1130 * index)
+
+    }
+    prev_btn.onclick= function(){
+      if(index === 0 ){
+        // 阈值 最小的index 的值
+        index = slides.length -1 
+
+        // index = slides.length - 2;
+        // wrapper.style.left = (slides.length - 1) * -1130 + 'px'
+      }else{
+        index --;
+      }
+      // console.log(index)
+      move(wrapper,"left",-1130 * index)
+
+    }
+    // 自动播放
+    // 定时器是一个 当开启定时器的时候要关闭定时器
+    // var timer = setInterval( next_btn.onclick, 3000)
+    // container.onmouseover= function(){
+    //   clearInterval(timer)
+    // }
+    // container.onmouseout=function(){
+    //   clearInterval(timer)
+    //   timer = setInterval(next_btn.onclick, 3000)
+    // }
+    
+/*  <script>   
+      // 1. 选择元素 | 设置变量;
+      var container = document.querySelector(".container");
+      var wrapper = document.querySelector(".wrapper");
+      var slides  = document.querySelectorAll(".slide");
+      var prev_btn = document.querySelector(".prev_btn");
+      var next_btn = document.querySelector(".next_btn");
+      var index = 0;
+      var prev  = 0;
+      // // 2. 初始化页面;
+      function init(){
+            var sum_width = slides[0].offsetWidth * slides.length + "px";
+            wrapper.style.width = sum_width;
+      }
+      // // 3. 事件绑定;
+      next_btn.onclick = function(){
+            prev = index;
+            // 4. 根据我们定义的规则操控数据;
+            if( index === slides.length - 1){
+                  index = 0;
+            }else{
+                  index ++;
+            }
+            // 5. 动画;
+            removeClass( slides , "prev");
+            addClass(slides[prev] , "prev");
+
+            removeClass( slides , "active");
+            addClass(slides[index] , "active");
+
+            slides[index].style.opacity = 0;
+            move(slides[index] , "opacity" , 100);
+
+
+            // removeClass( slides , "prev");
+            // addClass(slides[prev] , "prev");
+
+            // removeClass( slides , "active");
+            // addClass(slides[index] , "active");
+
+            // slides[index].style.height = 0;
+            // move(slides[index] , "height" , 286);
+
+            // slides[index].style.width = 0;
+            // move(slides[index] , "width" , 1130);
+      }
+
+      prev_btn.onclick = function(){
+           // 4. 根据我们定义的规则操控数据;
+            if( index === 0){
+                  index = slides.length - 1;
+            }else{
+                  index --;
+            }
+            // 5. 动画;
+            // move( wrapper , "left" , -1130 * index)
+      }
+      init();
+
+      function addClass( ele , className ){
+            ele.className += " " +className;
+      }
+      function removeClass( eles , className){
+            var reg = new RegExp("\\s?" + className , "g");
+            for(var i = 0 ; i < eles.length ; i ++){
+                  eles[i].className = eles[i].className.replace(reg,"");
+            }
+      }  
+ */
+    
+
+  </script>
+</body>
+
+</html>

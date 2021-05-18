@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .box {
+      height: 100px;
+      width: 100px;
+      background-color: #ddd;
+      margin-top: 20px;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="box"></div>
+  <div class="box"></div>
+  <div class="box"></div>
+  <div class="box"></div>
+  <script>
+    // 问题是： 鼠标移动到其他的元素上当前的元素的运动就会停止
+    // 原因是：所有的运动是依赖的是一个定时器 这个时候懂事起不够用
+    // 定时器起冲突了
+    // 解决办法： 一个元素开启一个定时器
+    var divs = document.querySelectorAll('.box')
+    for (var i = 0; i < divs.length; i++) {
+      divs[i].onmouseover = function () {
+        move(this, 200)
+      }
+    }
+    var timer = null
+    // 将每个元素的定时器 存储到每个元素中 ele.timer
+    function move(ele, target) {
+      // 关闭定时器
+      clearInterval(ele.timer)
+      // 开启定时器 
+   ele.timer = setInterval(function () {
+
+        var speed = (target - ele.offsetWidth) / 10
+        if (speed > 0) {
+          speed = Math.ceil(speed)
+        } else {
+          speed = Math.floor(speed)
+        }
+        ele.style.width = ele.offsetWidth + speed + 'px'
+        if (target === ele.offsetWidth) {
+          clearInterval(ele.timer)
+        }
+      },50)
+    }
+  </script>
+</body>
+
+</html>

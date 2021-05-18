@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .box{
+      position: relative;
+    }
+    .modal{
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 0;
+      bottom: 0;
+      background-color: #888;
+      opacity: .5;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+     
+    }
+    .center{
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 200px;
+      width: 300px;
+      border: 1px solid #222;
+    }
+    .modal input{
+      border: none;
+      outline: none;
+      background-color: #222;
+    }
+  </style>
+</head>
+<body >
+  <div id="box">
+    <button @click='change()'>click</button>
+    <div class="modal" v-show='modal' @click.self='myChange'>
+      <div class="center" >
+        <p>姓名: <input type="text" ></p>
+        <p>密码: <input type="text"></p>
+        <p><button>登录</button></p>
+      </div>                
+     
+    </div>
+ 
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script>
+    var app = new Vue({
+      el: '#box',
+      data: {
+        modal:false
+      },
+      methods:{
+        change(e){
+          this.modal = true
+        },
+        myChange(){
+          this.modal = false
+        }
+      },
+    })
+
+  </script>
+</body>
+</html>

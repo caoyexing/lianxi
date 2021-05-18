@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .jingubang{
+      height: 3000px;
+    }
+    .box{
+      height: 300px;
+      width: 100px;
+      background-color: #f66;
+      position: absolute;
+    }
+  </style>
+</head>
+<body>
+  <div class="box"></div>
+  <div class="jingubang"></div>
+  <script type="text/javascript">
+    var box = document.querySelector('.box')
+    var cH  = document.documentElement.clientHeight 
+    var bH  = box.offsetHeight  
+    // bee的初始位置
+    box.style.top =Math.round(cH/2 - bH/2 ) + 'px'
+    window.onscroll = ()=>{
+      var st = document.documentElement.scrollTop | document.body.scrollTop
+      move(Math.round(cH/2 - bH/2 + st) )
+    }
+    var timer = null
+    function move(target){
+      clearInterval(timer)
+      timer = setInterval(()=>{
+        var speed = (target - box.offsetTop) /10
+        console.log(speed)
+        if(speed > 0){
+         speed = Math.ceil(speed)
+        }else{
+         speed = Math.floor(speed)
+        }
+        box.style.top = box.offsetTop + speed + 'px'
+        if(target === box.offsetTop){
+          clearInterval(timer)
+        }
+
+      },50)
+    }
+  
+      
+    
+   
+  
+  </script>
+</body>
+</html>

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    //当前的时间
+    var d = new Date()
+    // 时间戳
+    var now = Date.now()
+    // 当前的时间
+    console.log(d,now)
+    var y = d.getFullYear()
+    // 月份是从0开始的要加1 
+    var m = d.getMonth()+1
+    // 三元表达式  
+    m = m<10?'0'+m:m
+    var day = d.getDate()
+    day= day<10?'0'+day:day
+  
+    var s = y+'-'+m+'-'+day
+    alert(s)
+  </script>
+</body>
+</html>

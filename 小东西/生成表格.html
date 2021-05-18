@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<style>
+  table{
+    border-collapse: collapse;
+    width: 800px;
+  }
+  td{
+    line-height: 30px;
+    text-align: center;
+    border: 1px solid red;
+    height: 30px;
+  }
+</style>
+<body>
+  <input type="text" id="row"><br>
+  <input type="text" id="col"><br>
+  <button id="btn">按钮</button>
+  <div id="div0"></div>
+  <script>
+    var row = document.getElementById('row')
+    var col = document.getElementById('col')
+    var btn = document.getElementById('btn')
+    var div0 = document.getElementById('div0')
+    btn.onclick = function () {
+      var r= Number(row.value)
+      var c= Number(col.value)
+      var str = '<table>'
+      for (var i = 0; i < r; i++) {
+        str += '<tr>'
+        for (var j = 0; j < c; j++) {
+          str += '<td>'
+          str += '</td>'
+        }
+        str += '</tr>'
+      }
+      str += '</table>'
+      div0.innerHTML = str
+    }
+  </script>
+</body>
+
+</html>

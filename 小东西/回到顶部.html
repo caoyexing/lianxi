@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .content{
+      height: 300px;
+      text-align: center;
+      font-size: 100px;
+      color: tomato;
+    }
+    /* 选择器 */
+    .content:nth-child(2n+1){
+      background-color: yellowgreen;
+    }
+    #back{
+      position: relative; 
+      display: none;
+    }
+    #gotoback{
+      height: 50px;
+      width: 50px;
+      background-color: #f66;
+      position: fixed;
+      right: 20px;
+      bottom: 20px;
+      /* 文字的水平的居中 */
+      text-align: center;
+      /* 行高 */
+      line-height: 50px;
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="content">hello</div>
+    <div class="content"></div>
+    <div class="content"></div>
+    <div class="content"></div>
+    <div class="content"></div>
+    <div class="content"></div>
+    <div class="content"></div>
+    <div class="content"></div>
+    <div class="content"></div>
+    <div class="content"></div>
+  </div>
+  <div id="back">
+    <div id="gotoback">
+      back
+    </div>
+  </div>
+  <script>
+    window.onscroll= function(){
+      var scrollTop = document.documentElement.scrollTop || document.body.scrollTop
+      console.log(scrollTop)
+      if(scrollTop > 600){
+        // 样式的显示和影藏
+        back.style.cssText="display:block"
+      }else{
+        back.style.cssText="display:none"
+      }
+    }
+    gotoback.onclick= function(){
+      // 回到顶部
+      document.documentElement.scrollTop = 0;
+      document.body.scrollTop =0
+
+    }
+  </script>
+</body>
+</html>

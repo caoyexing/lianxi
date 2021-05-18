@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    #box{
+      height: 100px;
+      width: 100px;
+      background: #ddd;
+      position: absolute;
+      left: 0;
+    }
+    button{
+      margin-top: 150px;
+    }
+    .line{
+      height: 200px;
+      width: 2px;
+      background: #000;
+      position: absolute;
+      left: 200px;
+      top: 0;
+    }
+  </style>
+</head>
+<body>
+  <div id="box"></div>
+  <button id="btn">运动</button>
+  <div class="line"></div>
+  <script>
+
+    // 缓冲运动 
+    // 距离终点越近 速度越慢
+    var box  = document.getElementById('box')
+    var btn = document.getElementById('btn')
+    var timer = null
+    btn.onclick= function(){
+      move(200)
+    }
+    function move(target){
+      clearInterval(timer)
+      timer = setInterval(function(){
+        // 缓冲运送的速度在定时器里，在定时器里元素的位置才会发生改变
+        var speed = (target - box.offsetLeft) /10
+        // 浏览器识别的最小单位是1px 小于1px的四舍五入
+        // 将速度向上取整
+        // 最后是 196.4 一直在循环 浏览器的识别的最小单位是1px  四舍五入
+        // 最后的值是1
+        speed = Math.ceil(speed)
+        console.log(speed)
+        // console.log(box.offsetLeft)
+        box.style.left = box.offsetLeft + speed + 'px'
+        // 元素的位置完全等于目标点 终止定时器
+        // 因为最后的速度是1 任何的整数目标点都可以被1整除
+        if(box.offsetLeft === target){
+          clearInterval(timer)
+        }
+      },50)
+      
+    }
+
+  </script>
+</body>
+</html>

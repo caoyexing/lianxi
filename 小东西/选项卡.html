@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .item{
+      display: none;
+    }
+    .item.active{
+      display: block;
+    }
+  </style>
+</head>
+<body>
+  <div class="btn">
+    <button>1</button>
+    <button>2</button>
+    <button>3</button>
+  </div>
+  <div class="content">
+    <div class="item active">我是1</div>
+    <div class="item">我是2</div>
+    <div class="item">我是3</div>
+  </div>
+  <script>
+    // bind
+
+    var btns = document.querySelectorAll('.btn button')
+    var contents = document.querySelectorAll('.item')
+    for(var i = 0 ; i< btns.length; i ++){
+      btns[i].onclick= function(index){
+        // 将每一个的类名都删除掉
+        for(var j = 0 ; j < contents.length; j++){
+          contents[j].className =contents[j].className.replace(' active', '')
+        }
+        // 给点击元素添加类名
+        contents[index].className += ' active'
+      }.bind(false,i)
+    }
+</script>
+</body>
+</html>

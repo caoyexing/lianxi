@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style type="text/css">
+    html,
+    body {
+          overflow: hidden;
+    }
+
+    body,
+    div,
+    h2,
+    p {
+          margin: 0;
+          padding: 0;
+    }
+
+    body {
+          color: #fff;
+          background: #fff;
+          font: 12px/2 Arial;
+    }
+
+    p {
+          padding: 0 10px;
+          margin-top: 10px;
+    }
+
+    span {
+          color: #ff0;
+          padding-left: 5px;
+    }
+
+    #box {
+          position: absolute;
+          width: 300px;
+          height: 150px;
+          background: #333;
+          border: 2px solid #ccc;
+          top: 50%;
+          left: 50%;
+          margin: -75px 0 0 -150px;
+    }
+
+    #box h2 {
+          height: 25px;
+          cursor: move;
+          background: #222;
+          border-bottom: 2px solid #ccc;
+          text-align: right;
+          padding: 0 10px;
+    }
+
+    #box h2 a {
+          color: #fff;
+          font: 12px/25px Arial;
+          text-decoration: none;
+          outline: none;
+    }
+</style>
+</head>
+<body>
+  <div id="box" style="margin-left: 0px; margin-top: 0px; left: 533px; top: 231px;">
+    <h2><a href="javascript:;">点击回放拖动轨迹</a></h2>
+    <p><strong>Drag:</strong><span id="judge">false</span></p>
+    <p><strong>offsetTop:</strong><span id="atop">231</span></p>
+    <p><strong>offsetLeft:</strong><span id="aleft">533</span></p>
+</div>
+<script src="./common.js"></script>
+<script>
+  var box =document.querySelector('#box')
+  var nav = box.children[0]
+  // 一种标识 用来判断这个程序是否执行 
+  var flag = false
+
+  // 全局变量 供两个函数之间的使用
+  var offsetX = null
+  var offsetY = null
+
+  function dragStart(evt){
+    flag= true
+    console.log('拖拽开始')
+    var e = evt || event
+    offsetX= e.offsetX
+    offsetY = e.offsetY
+  
+  }
+
+  function dragMove(evt){
+    if(!flag) {return false}
+    console.log('拖拽进行中')
+    var e = evt || event 
+    box.style.top = e.clientY  - offsetY+ 'px'
+    console.log(e.clientY  )
+    box.style.left = e.clientX  - offsetX+ 'px'
+  }
+  function dragEnd(){
+    flag = false
+    console.log('拖拽结束')
+  }
+  // 事件监听 引入的自己的common文件
+  on(box,'mousedown',dragStart)
+  on(document,'mousemove',dragMove)
+  on(document,'mouseup',dragEnd)
+</script>
+  
+</body>
+</html>

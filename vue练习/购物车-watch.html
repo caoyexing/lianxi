@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+   ul li{
+     display: flex;
+     justify-content: space-around;
+     padding: 10px;
+   }
+   ul img{
+     height: 100px;
+     width: 100px;
+   }
+  
+  </style>
+</head>
+
+<body>
+  <div id="app">
+    <div v-if='list.length ===0'>空空如也</div>
+    <template v-else>
+      <ul>
+        <!-- 计算属性是一个值 状态-->
+        <input type="checkbox" v-model='isAllchecked' />全选/全不选
+      <li v-for='(item,index) in list' :key='index'>
+        <!-- 绑定的是每一条的数据 -->
+        <input type="checkbox" v-model='checkGroup' :value="item"  @change='checked'>
+        <img :src="item.pic" alt="">
+        <div>
+          <div>商品名称:{{item.name}}</div> 
+          <div>商品价钱:￥{{item.price}}</div>
+        </div>
+        <div>
+          <button @click='item.number--' :disabled = 'item.number === 1'>-</button>
+        {{item.number}}
+        <button @click='item.number ++' :disabled='item.number === item.limit'>+</button>
+        </div>
+        <div>
+          <button @click = handelDelete(index,item.id) >删除</button>
+        </div>
+      </li>
+      </ul>
+    
+    <div>
+      <!-- {{this.checkGroup}}<br/> -->
+      <!-- 函数的总额 -->
+      总额：{{sum()}}
+    </div>
+  </template>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <!-- vm -->
+  <script type="text/javascript">
+    var vm = new Vue({
+      el: '#app',
+      data: {
+        checkGroup:[],
+        isAllchecked:false,
+        list:[
+          {
+            name:'商品1',
+            number:1,
+            price:5,
+            id:1,
+            limit:5,
+            pic:'https://note.youdao.com/yws/public/resource/d25a848293401b1aa2fdf16373951525/xmlnote/CE0EBAB08D4C47719C8620F77CEC9818/1340'
+          },
+          {
+            name:'商品2',
+            number:2,
+            price:10,
+            id:2,
+            limit:8,
+            pic:'https://note.youdao.com/yws/public/resource/d25a848293401b1aa2fdf16373951525/xmlnote/WEBRESOURCEe02513e83a017b656226678b29db2996/1377'
+          },
+          {
+            name:'商品3',
+            number:3,
+            price:15,
+            id:3,
+            limit:10,
+            pic:'https://note.youdao.com/yws/public/resource/d25a848293401b1aa2fdf16373951525/xmlnote/WEBRESOURCEe02513e83a017b656226678b29db2996/1377'
+          }
+
+
+        ]
+      },
+      methods:{
+        // 总金额
+        sum(){
+          var total = 0
+          // 循环数据
+          this.checkGroup.forEach((item)=>{
+            // 每条数据计算
+            total+= item.number * item.price
+          })
+          return total
+        },
+        // 删除按钮
+        handelDelete(index,deleId){
+          // 对checkGroup 进行重新的赋值渲染
+          //  过滤出 不相等的条件 输出
+        this.checkGroup= this.checkGroup.filter((item)=>{
+           return item.id !== deleId
+         }) 
+          this.list.splice(index,1)
+          this.checked()
+        },
+        checked(){
+          // console.log(this.isAllchecked)
+          if(this.checkGroup.length === this.list.length){
+            this.isAllchecked = true
+          }else{
+            this.isAllchecked = false
+          }
+        }
+        
+      },
+      watch:{
+        isAllchecked(data){
+          if(data){
+            this.checkGroup =  this.list
+          }else if(this.checkGroup.length === 3){
+            this.checkGroup = []
+          }
+        }
+      }
+    })
+  </script>
+</body>
+
+</html>

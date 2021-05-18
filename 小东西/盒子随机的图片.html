@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .cont{
+      height: 100px;
+      width: 100px;
+
+    }
+    .cont img{
+      height: 100%;
+      width: 100%;
+    }
+  </style>
+</head>
+<body>
+  <div class="cont">
+    <img src="https://img.zcool.cn/community/010b9e5f43e226a80120a82177dcd5.jpg@520w_390h_1c_1e_1o_100sh.jpg" alt="">
+  </div>
+  <button class="btn">随机</button>
+  <script>
+    // 会有重复的图片 var一个空的数组 
+    var arr = [
+      'https://img.zcool.cn/community/011aee5f6489a711013f3110596c0d.jpg@520w_390h_1c_1e_1o_100sh.jpg',
+      'https://img.zcool.cn/community/015fe15f673a7611013f3110fd2a8e.jpg@520w_390h_1c_1e_1o_100sh.jpg',
+      'https://img.zcool.cn/community/01037a5f65783211013e4584d8a3ad.jpg@520w_390h_1c_1e_1o_100sh.jpg',
+      'https://img.zcool.cn/community/013f5c5f6744da11013f3110d18a16.jpg@520w_390h_1c_1e_1o_100sh.jpg',
+      'https://img.zcool.cn/community/0103365f66ed0911013e45844c6b04.jpg@520w_390h_1c_1e_1o_100sh.jpg'
+    ]
+  /*   var cont = document.querySelector('.cont')
+    var btn = document.querySelector('.btn')
+    var arr_temp =[]
+    btn.onclick=function(){
+      var math = parseInt(Math.random() * arr.length)
+      cont.children[0].src = arr[math]
+    
+    } */
+
+// 每次随机之后 将地址删除  放入新的数组中 再重新赋值 
+// 每次随机 在原数组中删除
+    var cont = document.querySelector('.cont')
+    var btn = document.querySelector('.btn')
+    // 盛放的是显示过的图片
+    var arr_temp =[]
+    btn.onclick=function(){
+      // 随机数 图片长度的随机数
+      var math = parseInt(Math.random() * arr.length)
+      // console.log(math)
+      // 这是一个数组 每次截取的是一个网址 
+      // 截取的是一个数组的长度
+      var arr_src_random = arr.splice(arr[math],1)
+      // arr_src_random  是一个数组  [0] 是取出里面的第一项
+      console.log(arr_src_random[0],arr_src_random)
+      // 数组中添加数据
+      arr_temp.push(arr_src_random[0])
+      // 随机图片的网址 
+      cont.children[0].src= arr_src_random[0]
+
+      if(arr.length === 0){
+        // 重新赋值 将截取的空的数组 重新赋值
+        arr = arr_temp
+        // 将显示过得图片的数组 进行清空
+        arr_temp =[]
+        // console.log(arr,arr_temp)
+      }
+      
+    }
+
+  </script>
+</body>
+</html>

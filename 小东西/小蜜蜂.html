@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    *{
+      margin: 0;
+      padding: 0;
+    }
+    #bee{
+      height: 200px;
+      width: 40px;
+      /* 不用固定定位是因为滚动的是小蜜蜂要动 */
+      position: absolute;
+      left: 0;
+      background: yellowgreen;
+    }
+    #jingubang{
+      height: 3000px;
+    }
+  </style>
+</head>
+<body>
+  <div id="bee"></div>
+  <div id="jingubang"></div>
+  <script>
+    // 1 小蜜蜂居中
+    var bee = document.getElementById('bee')
+    var cH = document.documentElement.clientHeight 
+    var bH = bee.offsetHeight
+    // round 四舍五入
+    bee.style.top =Math.round(cH/2 - bH/2)  + 'px'
+    //  2 页面移动元素跟随移动
+    window.onscroll= function(){
+      
+      var st = document.documentElement.scrollTop || document.body.scrollTop
+      // console.log('滚动距离',st)
+      move(Math.round(cH/2 - bH/2 + st))
+    }
+    // speed 动画效果
+    var timer = null
+    function move(target){
+      // 1 关闭定时器
+      clearInterval(timer)
+      timer = setInterval(function(){
+        // 2 求速度
+        var speed = (target - bee.offsetTop) /10
+        // 3 速度取整 
+        console.log(speed)
+        if(speed> 0){
+          speed = Math.ceil(speed)
+        }else{
+          speed = Math.floor(speed)
+        }
+
+        bee.style.top = bee.offsetTop + speed  + 'px'
+        // 4 判定终止条件
+        if(target === bee.offsetTop){
+          clearInterval(timer)
+        }
+        
+      },50)
+
+    }
+  </script>
+</body>
+</html>

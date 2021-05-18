@@ -1,0 +1,93 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>演示checkbox功能</title>
+<!-- <link rel="stylesheet" type="text/css" href="table.css">/*这里写了table中颜色，等的属性*/ -->
+<script type="text/javascript">
+// var cName;
+// function trColor(){/*这个函数是设置表格中奇数行与偶数行的颜色差别 */
+// var Tb=document.getElementById("mailTable");/* 一般而言如果id这个属性值是唯一的，所以一般设置一个id属性值 */
+// var srow=Tb.rows;
+// for(var i=1;i<srow.length;i++){
+// if(i%2==1){
+// srow[i].className="one";
+// }
+// else{
+// srow[i].className="two";
+// }
+// srow[i].onmouseover=function(){
+// cName=this.className;
+// this.className="over";
+// }
+// srow[i].onmouseout=function(){
+// this.className=cName;
+// }
+// }
+// }
+// onload=trColor;
+/* 这里写成onload=trColor();是指的调用trColor这个函数，而上面那样写是将这个函数赋给onload */
+function delMail(){
+var cbox=document.getElementsByName("mail");
+/* 如果是按顺序删除的话就会出现bug---连着删几个选项就会发现问题,倒序删除会避免发生这样的问题*/
+for(var i=cbox.length-1;i>=0;i--){
+if(cbox[i].checked){
+var obj=cbox[i];
+while(obj.nodeName!="TR"){
+obj=obj.parentNode;
+}
+var oTr=obj;
+obj.parentNode.removeChild(oTr);
+}
+}
+// trColor();
+}
+</script>
+</head>
+<body>
+<h1>演示table和checked组件</h1>
+<table id="mailTable">
+<tr>
+<th>全选</th>
+<th>发件人</th>
+<th>邮件标题</th>
+<th>附件</th>
+</tr>
+<tr>
+<td><input type="checkbox" name="mail"></td>
+<td>张三</td>
+<td>邮件1标题</td>
+<td><a href="#">附件1</a>，附件2</td>
+</tr>
+<tr>
+<td><input type="checkbox" name="mail"></td>
+<td>张三</td>
+<td>邮件2标题</td>
+<td><a href="#">附件3</a>，附件4</td>
+</tr>
+<tr>
+<td><input type="checkbox" name="mail"></td>
+<td>张三</td>
+<td>邮件3标题</td>
+<td><a href="#">附件5</a>，附件6</td>
+</tr>
+<tr>
+<td><input type="checkbox" name="mail"></td>
+<td>张三</td>
+<td>邮件4标题</td>
+<td><a href="#">附件7</a>，附件8</td>
+</tr>
+<tr>
+<td><input type="checkbox" name="mail"></td>
+<td>张三</td>
+<td>邮件标5题</td>
+<td><a href="#">附件9</a>，附件10</td>
+</tr>
+</table>
+<input type="button" value="删除邮件" onclick="delMail();">
+
+</body>
+</html>
+
+---------------------------------------------------------
+

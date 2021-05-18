@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    // 存放随机数的数组
+   var arr =[]
+  //  10到100之间的数字
+   function random1(num1,num2){
+    //  取到数字的范围
+     var ran= num2-num1+1
+    //  将数值进行取随机数  将数值的随机数向下取整
+     var res= Math.floor(Math.random()*ran+num1) 
+     return res
+   }
+  // 将得到的数值 push到数组中
+   for(var i = 0;i<10;i++){
+    arr.push(random1(10,100))
+   }
+  //  将数组中的值进行排序 sort 方法 b-a
+   arr.sort(function(a,b){
+    return b-a
+   })
+  //  输出数组
+   alert(arr)
+  </script>
+</body>
+
+</html>

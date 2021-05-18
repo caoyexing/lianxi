@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    *{
+	margin: 0;
+	padding: 0;
+}	
+#box{
+	width: 150px;
+	height:200px;
+	position: relative;
+	background: #b6b6b6;
+	border-radius: 5px;
+	box-shadow: 0 0 5px #ddd;
+  left: -150px;
+  border:  1px solid red;
+}
+#box span{
+	width: 20px;
+	height: 60px;
+	position: absolute;
+	right: -20px;
+	top: 60px;
+	background:#ddd;
+	color:#fff;
+	border-radius: 0 5px 5px 0;
+
+}
+  </style>
+</head>
+<body>
+  <div id="box">
+		<span>分享到</span>
+  </div>
+  <script>
+    var box = document.getElementById('box')
+    //目标点
+    var target = 0 
+    // 速度
+    var speed = 5
+    // 定时器
+     var timer = null
+    //  1.鼠标移入的是让box出来
+    // box left -150 =>0
+    // 2. 鼠标移出的时候让box隐藏
+    // box left 0 =>-150
+    box.onmouseover= function(){
+      // 开启定时器之前先关闭上一个定时器 定时器事件有多次触发的场景
+      clearInterval(timer) 
+      timer= setInterval(function(){
+        // bug 定时器不能关闭 要在开启定时器之前先关闭
+        //  console.log(1)
+        box.style.left  = box.offsetLeft + speed + 'px'
+        if(Math.abs( target- box.offsetLeft) <= Math.abs(speed)){
+          clearInterval(timer)
+          box.style.left = target + 'px'
+        }
+      },50)
+    }
+    var target2 = -150
+    var speed2 = -5
+    box.onmouseout = function(){
+      clearInterval(timer)
+      timer = setInterval(function(){
+        
+        box.style.left  = box.offsetLeft +speed2 + 'px'
+        // 终止条件
+        if(Math.abs(target2- box.offsetLeft) <= Math.abs(speed2)){
+          clearInterval(timer)
+          box.style.left = target2 + 'px'
+        }
+      },50)
+    }
+  </script>
+  
+</body>
+</html>

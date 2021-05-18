@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div id="app">
+    <button v-for="item in tabs" @click="change = item.id">
+    	{{ item.text }}
+    </button>
+    <!-- data  computed  -->
+    <!-- 显示的组件 -->
+    <component :is="change"></component>
+</div>
+
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script type="text/javascript">
+    var vm = new Vue({
+      el:'#app',
+     data: {
+        change: 'one', // 默认显示组件 one
+        tabs: [
+          {id: 'one', text: '线路一'},
+            {id: 'two', text: '线路二'},
+            {id: 'thr', text: '线路三'}
+        ]
+      },
+      components: {
+        one: {template: '<div>我是线路一</div>'},
+        two: {template: '<div>我是线路二</div>'},
+        thr: {template: '<div>我是线路三</div>'}
+      }
+})
+  </script>
+</body>
+</html>

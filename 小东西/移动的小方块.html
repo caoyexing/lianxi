@@ -1,0 +1,44 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    div{
+      height: 100px;
+      width: 100px;
+      background-color: yellowgreen;
+      position: absolute;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="div0">
+
+  </div>
+  <script>
+    var div0= document.querySelector('.div0')
+    // 物体每次的位移
+    var i =8;
+    // 判断 一个物体的标识
+    var bool = false
+
+    setInterval(anima,16)
+
+    div0.onclick=function(){
+      // 点击一下停止在点击前进
+      bool= !bool
+    }
+
+    function anima(){
+      // bool=true  停止
+      if(bool) return;
+      i++;
+      div0.style.left= i+'px'
+    }
+  </script>
+</body>
+</html>

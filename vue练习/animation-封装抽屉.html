@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    /* 类名 */
+    .left-enter-active{
+      /* 动画的名字 */
+      animation: left .5s;
+    }
+    .left-leave-active{
+      animation: left .5s reverse;
+    }
+    @keyframes left{
+      0%{
+        opacity: 0;
+        transform: translateX(-100px);
+      }
+      100%{
+        opacity: 100;
+        transform: translateX(0px);
+      }
+    }
+
+    .right-enter-active{
+      animation:right .5s;
+    }
+    .right-leave-active{
+      animation: right .5 reverse;
+    }
+    @keyframes right{
+      0%{
+        opacity: 0;
+        transform: translateX(100px);
+      }
+      100%{
+        opacity: 100;
+        transform: translateX(0px);
+      }
+    }
+  </style>
+
+</head>
+<body>
+  <div id="app">
+    <navbar @mychange='handel'></navbar>
+    <sidebar v-show='isshow' deriction='right'></sidebar>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script type="text/javascript">
+  Vue.component('navbar',{
+    template:`<div style='background-color:yellow'> 
+      <button @click='change'>click</button>
+      </div>`,
+      methods:{
+        change(){
+         this.$emit('mychange')
+        }
+      }
+  })
+  Vue.component('sidebar',{
+    props:['deriction'],
+    template:`
+    <transition :name='deriction' >
+      <div style='background:blue;width:200px;'>
+        <ul >
+        <li>好友</li>
+        <li>设置</li>
+        <li>添加</li>
+        </ul>
+      </div>
+    </transition>`
+  })
+  var vm = new Vue({
+    el:'#app',
+    data:{
+     isshow:false
+    },
+    methods:{
+      handel(){
+        this.isshow= !this.isshow
+      }
+    }
+
+  })
+  
+  </script>
+</body>
+</html>

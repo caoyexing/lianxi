@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+
+</head>
+
+<body>
+<!--   <input type="text" id="ID">
+  <button class="btn">获取输入框的内容</button>
+  <div class="content"></div> -->
+  ------------
+  <div id="ID"></div>
+  <script>
+    //输入框的内容是 ipt.value
+       /*  var ipt= document.getElementById('ID')
+        var btn = document.querySelector('.btn')
+        var cont = document.querySelector('.content')
+        console.log(cont)
+        btn.onclick=function(){
+          var val= ipt.value
+          // alert('这是输入框的内容'+val)
+          cont.innerHTML = val
+        } */
+
+
+   /*  var div = document.getElementById('ID')
+
+    div.innerHTML = 'hello'
+    div.style.color = '#f66' */
+     /*  var str= ['hello','word','haha']
+      var s= str.join('')
+      console.log(s) */
+
+      // var num = [1,2,9,4,5]
+      // 翻转
+    // var s= num.reverse()
+    // console.log(s)
+    // 降序排列
+    // var s2= num.sort(function(a,b){
+    //   return b-a
+    // })
+    // console.log(s2)
+    
+
+    // 获取今天的日期
+    //获取的是现在的时间 
+    var d = new Date()
+    var y = d.getFullYear()
+    console.log(y)
+    // 月份是从0开始的 要加1 
+    var m= d.getMonth()+1
+    console.log(m)
+    // 样式的 2020-09-26  判断是个位数前面加0 十位就不加
+    m = m < 10 ? '0' + m : m
+    var day = d.getDate()
+    day = day < 10 ? '0' + day : day
+    var s = y + '-' + m + '-' + day
+    console.log(s)
+
+
+</script>
+</body>
+
+</html>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .small{
+      height: 50px;
+      width: 50px;
+      background-color: yellowgreen;
+      position: absolute;
+    }
+    .jingubang{
+      height: 3000px;
+    }
+  </style>
+</head>
+<body>
+  <div class="small">
+    
+  </div>
+  <!-- 当页面出现滚动的时候 小方块跟随页面向上移动 -->
+  <!-- 但滚动 鼠标不动的时候 鼠标和小方块会脱离开 -->
+  <div class="jingubang">
+
+  </div>
+  <script>
+    var box = document.querySelector('.small')
+    // 假定的是小方块的不动的时候的位置
+    var box_top = 0;
+    document.onmousemove= function(evt){
+      var e = evt || event
+      var st = document.documentElement.scrollTop || document.body.scrollTop
+      // console.log(st)
+      var x = e.clientX
+      var y = e.clientY
+// -25 是将鼠标在小方块的中间
+      box.style.left= x -25+ 'px'
+      box.style.top = y -25 + st+ 'px'
+      // 这个时候是不动的
+      box_top = e.clientY - 25
+    }
+
+    // 当页面滚动的时候 鼠标不会自己跑了
+    window.onscroll= function(){
+      var st = document.documentElement.scrollTop || document.body.scrollTop
+      // 当鼠标滚动的时候 小方块距离浏览器的距离  + 向上卷动的距离
+      box.style.top = box_top + st + 'px'
+    }
+  </script>
+  
+</body>
+</html>

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    var url = 'http://item.taobao.com/item.htm?a=1&b=2&c=&d=xxx&e'
+/*     function getParmas(url){
+      // split() 方法用于把一个字符串分割成字符串数组。
+      // split('?')[1] 是得到的参数
+      var str = url.split('?')[1].split('&')
+      // console.log(str)
+      var json={}
+      for(var i =0;i<str.length;i++){
+       var item = str[i].split('=')
+      //key value 的形式 {a:1} 的形式给json 
+       console.log(item[0],item[1])
+        json[item[0]]=item[1]
+        // console.log(json)
+      }
+      return json
+    }
+ 
+   var s= getParmas(url)
+   console.log(s) */
+    function getParams(url) {
+      // 截取  ？ & 
+      // split 对字符切割为数组
+      // 数组的形式展现
+      var str = url.split('?')[1].split('&')
+      // [0] [1] 是 ？ 的前后的两部分 
+      // console.log(url.split('?')[1])
+      console.log(str)
+      
+      // json的形式
+      var json = {}
+      for (var i = 0; i < str.length; i++) {
+        // console.log(str[i])
+        var items = str[i].split('=')
+        // item[1] 是 = 右边的数值
+        // item[0] 是 = 左边的字母
+        // console.log(items[0])
+        // 左右的数值进行拼接
+        
+        json[items[0]] = items[1]
+      }
+      return json
+    }
+  var s=  getParams(url)
+  console.log(s)
+   /*  var url="http://www.taobao.com/index.php?keya=00&keyb=11&keyc=22";
+function parseQueryString(url){
+  console.log(url)
+      var str=url.split('?')[1];
+       var iterms = str.split("&");
+       var arr,Json={};
+       for(var i=0;i<iterms.length;i++){
+               arr=iterms[i].split("=");
+               Json[arr[0]]=arr[1];
+       }
+       return Json;
+}
+ 
+var obj= parseQueryString(url)
+
+console.log(obj)
+ */
+  </script>
+</body>
+
+</html>

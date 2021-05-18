@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <div id="container">
+
+  </div>
+  <script type="text/javascript">
+    //开头变大写
+    var dom = document.getElementById('container')
+    var st = 'hello js'
+    dom.innerHTML = st.substring(0, 1).toUpperCase() + st.substring(1)
+
+    // 26个英文字母
+    let arr = []
+    for (let code = 65; code < 91; code++) {
+      arr.push(String.fromCharCode(code))
+    }
+    console.log(arr)
+
+    // var arr1 = ['1', '2', undefined, '3.jpg', undefined]
+    // var newArr = arr1.filter(item => item)
+    // console.log(newArr)
+
+    var arr1 = [20, 30, 50, 96, 50]
+    var newArr = arr1.filter(item => item > 40)
+    console.log(newArr, arr1)
+
+  </script>
+</body>
+
+</html>

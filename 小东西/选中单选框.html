@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <form action="" name='form1'>
+    <input type="radio" name="radioGroup">
+    <input type="radio" name="radioGroup">
+    <input type="radio" name="radioGroup">
+    <input type="radio" name="radioGroup">
+    <!-- <input type="submit" "> -->
+  </form>
+  
+
+  <script >
+    //相同的name值 不同的value 只能选择其中的一个
+
+   var Inputs= document.getElementsByTagName('input')
+   for(let i =0;i<Inputs.length;i++){
+     Inputs[i].onclick=function(e){
+      //  判断是传入的哪个目标
+       var target = e.target || e.srcElement
+          if(target.type='radio' ){
+            alert(i+1)
+        }
+     }
+   }
+ 
+
+
+
+/*  var Inputs = document.getElementsByTagName('input')
+        for(let i =0 ;i<Inputs.length;i++){
+                Inputs[i].onclick=function(e){
+            var  target = e.target || e.srcElement
+                    for (let i = 0; i < Inputs.length; ++i) {
+                    if (target.type=="radio" && target == Inputs[i]) {
+                        alert(++i);
+                        break;
+                    }
+                }
+                    console.log(target)
+                }
+        } */
+    
+  </script>
+</body>
+</html>

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div id="app">
+    <!-- 组建 -->
+    <my-input type='text' title='姓名' v-model='username'></my-input>
+    <my-input type='password' title="密码" v-model='password'></my-input>
+    <my-input type='number' title="年龄" v-model='age'></my-input>
+
+    <button @click='sub'>sub</button>
+    <button @click='res'>reset</button>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+  <script type="text/javascript">
+    Vue.component('myInput',{
+      props:['type','title','value'],
+      template:`<div>
+        <label>{{title}}</label>
+        <input :type='type' @input='handelClick' :value='value'>
+        </div>`,
+        methods:{
+          // input 事件  this.$emit 触发的 语法糖 
+          handelClick(evt){
+            console.log(evt.target.value)
+            this.$emit('input',evt.target.value)
+          }
+        }
+    })
+    // :value 是input的输入框自带的属性 value是传进来的值 
+    var vm = new Vue({
+      el:'#app',
+      data:{
+        username:'username',
+        password:'111',
+        age:'18'
+      },
+      methods:{
+        sub(){
+          console.log(this.username,this.age,this.password)
+        },
+        res(){
+          this.username= ''
+          this.age = ''
+          this.password =''
+        }
+      }
+    })
+  </script>
+</body>
+</html>

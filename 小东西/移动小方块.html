@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    #wrap{
+      height: 100px;
+      width: 100px;
+      background-color: yellowgreen;
+      /* 移动的小方框 */
+      position: absolute;
+    }
+  </style>
+</head>
+<body>
+  <div id="wrap">
+
+  </div>
+  <script>
+    var div = document.getElementById('wrap')
+    // 每次移动的位移
+    var i = 8
+    // 标识
+    var bool = false
+
+    setInterval(animit,16)
+    div.onclick=function(){
+      bool= !bool
+    }
+    function animit(){
+      // 点击之后 变为true 停止
+      if(bool) return 
+      // 要设置小方块的定位 position : absolute
+      i++;
+      div.style.left= i +'px'
+    }
+  </script>
+</body>
+</html>

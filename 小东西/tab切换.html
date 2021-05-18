@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .item-box{
+      display: none;
+    }
+    .item-box.active{
+      display: block;
+    }
+  </style>
+</head>
+<body>
+  <div class="content">
+    <div class="btn-box">
+      <button>1</button>
+      <button>2</button>
+      <button>3</button>
+    </div>
+    <div class="content-box">
+      <div class="item-box active">1</div>
+      <div class="item-box">2</div>
+      <div class="item-box">3</div>
+    </div>
+  </div>
+  <script>
+    // 点击之后得到的是下标 下标的切换
+    var btns = document.querySelectorAll('button')
+    var items = document.querySelectorAll('.item-box')
+    for( let i = 0 ; i<btns.length; i++){
+      btns[i].onclick = function(index){
+        // 先删除每个items的类名 
+        for(let i = 0 ; i < items.length; i ++){
+          items[i].className= items[i].className.replace(' active','')
+        }
+        // 点击下标对应的是item的下标的内容
+        items[index].className += ' active'
+        // 没有改变this指向 将下标穿进去 index
+      }.bind(false,i)
+    }
+
+  </script>
+</body>
+</html>

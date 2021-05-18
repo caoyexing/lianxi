@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    /* class 的类名  时间是带单位的*/
+    .kerwin-enter-active{
+      animation: left 1.5s ;
+    }
+    .kerwin-leave-active{
+      animation: left 1.5s reverse;
+    }
+    /* 动画的名字 */
+    @keyframes left {
+      0%{
+        opacity: 0;
+        /* x轴上的平移 */
+        transform: translateX(100px);
+      }
+      100%{
+        opacity: 100;
+        transform: translateX(0px);
+      }
+    }
+  </style>
+</head>
+<body>
+  <div id="app">
+    <button @click='isshow = !isshow' style="margin: 10px;">click</button>
+    <transition name='kerwin'>
+      <div v-show='isshow' style='background-color: yellowgreen;width:100px;height: 100px;'>
+        hi
+      </div>
+  </transition>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script type="text/javascript">
+    var vm = new Vue({
+      el:"#app",
+      data:{
+       isshow:false
+      },
+     
+    })
+  </script>
+</body>
+</html>

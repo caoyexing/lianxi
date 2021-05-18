@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .box{
+      height: 100px;
+      width: 100px;
+      background-color: yellowgreen;
+      position: absolute;
+    }
+    .jingubang{
+      height: 3000px;
+    }
+  </style>
+</head>
+<body>
+  <div class="box">
+
+  </div>
+  <!-- 当出现滚动条的时候 小方块回和鼠标脱离 -->
+  <div class="jingubang"></div>
+  <script>
+    var box = document.querySelector('.box')
+    
+    var box_top =0
+    document.onmousemove=function(evt){
+
+      var e = evt || event 
+      var st = document.body.scrollTop || document.documentElement.scrollTop
+
+      // 鼠标懂动的时候 是在一起的 当鼠标完全不动的时候 就脱离了
+      box.style.left = e.clientX -50 + 'px'
+      box.style.top = e.clientY -50  + st+ 'px'
+// 鼠标不动的时候 这个位置就是不动的 就是在浏览器的固定位置
+      box_top = e.clientY - 50
+    }
+    window.onscroll= function(){
+      var st = document.body.scrollTop || document.documentElement.scrollTop
+      // 固定位置  + 滚动的距离
+      box.style.top =box_top+ st + 'px'
+    }
+  </script>
+</body>
+</html>

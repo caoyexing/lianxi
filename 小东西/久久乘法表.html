@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    // 久久乘法表
+    var i = 1;
+    var str='<table>'
+    while(i<10){
+      str+='<tr>'
+      var j= 1;
+      while(j<=i){
+        if(j>i) break;
+        str+='<td>'+j+'*'+i+'='+i*j+'</td>'
+        j++;
+      }
+     str+='</tr>'
+      i++;
+    }
+    str += '</table>'
+    document.write(str)
+    
+  </script>
+</body>
+</html>

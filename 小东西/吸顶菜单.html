@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    *{
+      margin: 0;
+      padding: 0;
+    }
+    li{
+      list-style: none;
+    }
+    .top{
+      height: 300px;
+      background-color: yellowgreen;
+    }
+    .fixed{
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 11;
+      background-color: #f66;
+    }
+    .nav{
+      height: 100px;
+      text-align: center;
+      line-height: 100px;
+    }
+    .nav ul{
+      display: flex;
+      justify-content: space-around;
+    }
+    .footer{
+      height: 1800px;
+      background-color: #ddd;
+    }
+  </style>
+</head>
+<body>
+  <div class="top">
+    
+  </div>
+  <div class="nav">
+    <ul>
+      <li>我是导航</li>
+      <li>我是导航</li>
+      <li>我是导航</li>
+      <li>我是导航</li>
+      <li>我是导航</li>
+      <li>我是导航</li>
+    </ul>
+  </div>
+  <div class="footer">
+
+  </div>
+  <script>
+    window.onscroll= function(){
+      var scrollTop = document.documentElement.scrollTop || document.body.scrollTop
+      var nav = document.querySelector('.nav')
+      console.log(scrollTop)
+      // 判定阈值
+      if(scrollTop > 300){
+        // 判断是否含哟类名 有就不加了
+        if(nav.className.indexOf('fixed') !== -1){ return false}
+        // 添加类名
+        nav.className += ' fixed'
+      }else{
+        // 判断是否含有类名  ===-1 是内部没有这个数值
+        if(nav.className.indexOf('fixed') !== -1){
+          //将类名删除掉 fixed前面要加空格 将全部的类名替换掉
+          nav.className =  nav.className.replace(' fixed','')
+        }
+      }
+    }
+
+  </script>
+</body>
+</html>

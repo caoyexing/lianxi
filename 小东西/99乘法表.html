@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    var row = 0;
+    while(row<9){
+      row ++;
+      var col=0 ;
+      while(col<row){
+        col ++;
+        document.write( col+ '*' + row + '=' +  col * row + '&nbsp;&nbsp;')
+      }
+      document.write('</br>')
+    }
+
+  </script>
+</body>
+</html>

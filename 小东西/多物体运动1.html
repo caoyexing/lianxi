@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .box{
+      height: 100px;
+      width: 100px;
+      background: #ddd;
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+  <div class="box"></div>
+  <div class="box"></div>
+  <div class="box"></div>
+  <div class="box"></div>
+  <script>
+    var divs = document.querySelectorAll('.box')
+    var timer = null
+    for(var i = 0 ; i < divs.length ; i ++){
+      divs[i].onmouseover = function(){
+        // this  当前的元素
+        move( this, 200)
+      }
+    }
+    // ele 是当前传入的元素 是一个div
+    function move (ele,target){
+      clearInterval(timer)
+      timer= setInterval(function(){
+        // 当前元素  不知道是哪个 
+        // 2 速度
+        // 
+        // 事件处理函数中this 作为实参进行传递 传递到运动框架之中
+        var speed = (target - ele.offsetWidth ) /10
+        // 速度取整
+        if(speed>0){
+          speed = Math.ceil(speed)
+        }else{
+          speed = Math.floor(speed)
+        }
+        ele.style.width = ele.offsetWidth + speed + 'px'
+
+        if(target === ele.offsetWidth){
+          clearInterval(timer)
+        }
+
+      },50)
+    }
+  </script>
+</body>
+</html>

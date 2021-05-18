@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .dragon{
+      background-image: url(https://note.youdao.com/yws/public/resource/ffecf98e7b51591b78783330d15074e5/xmlnote/D8ECEA03032E43E5834D2C468D702A0A/455);
+      height: 120px;
+      width: 100px;
+      background-size: 120%;
+      position: absolute;
+      left: 100px;
+      bottom: 100px;
+      transition: all 1s;
+      transform: rotate(0);
+    }
+  </style>
+</head>
+<body>
+  <div class="dragon">
+
+  </div>
+  <script>
+    // 
+    var dragon = document.querySelector('.dragon')
+    // 当bottom遇到c3的时候 会出问题 所以见小恐龙的初始位置进行计算
+    var clientHeight = document.documentElement.clientHeight
+    var dragonHeight = dragon.offsetHeight
+    var reduce_height = clientHeight - dragonHeight
+    // 将小恐龙的初始位置进行定位
+    dragon.style.top = reduce_height + 'px'
+    //事件
+    document.onclick= function(evt){
+      var e = evt || event
+      // 浏览器
+      var x = e.clientX
+      var y = e.clientY
+      
+      dragon.style.left= x + 'px'
+      dragon.style.top = y + 'px'
+      dragon.style.transform= 'rotate(360deg)'
+      
+
+      // 回到原位
+      setTimeout(function(){
+        dragon.style.transform= 'rotate(0)'
+        dragon.style.top= reduce_height+'px'
+      },1000)
+    }
+  </script>
+  
+</body>
+</html>

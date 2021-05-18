@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  
+</head>
+<body>
+  <div id="app">
+    <input type="text" @input='change' v-model='mytext'>
+    <!-- {{change()}} -->
+    <ul>
+      <!-- <li v-for='(item,index) in change()'>
+        {{item}}
+      </li> -->
+
+      <li v-for='(item,index) in datacomputed'>
+          {{item}}
+      </li>
+    </ul>
+    </ul>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script>
+   var app = new Vue({
+      el: '#app',
+      data: {
+        message: ['aaa','bbb','ccc','abc','abcde'],
+        mytext:''
+      },
+      // 方法是没有缓存的 有几次会执行几次的
+      // methods:{
+      //   change(){
+      //     // console.log(this.mytext)
+      //     return this.message.filter((item)=>{
+      //       // console.log(this.message,item)
+      //       return item.includes(this.mytext)
+      //     })
+      //   },
+      // }
+      // 计算属性是有缓存的 跟随着依赖的变化的变化的
+      computed:{
+        datacomputed(){
+          return this.message.filter((item)=>{
+            return item.includes(this.mytext)
+          })
+        }
+      }
+     
+    })
+    
+  </script>
+
+</body>
+</html>

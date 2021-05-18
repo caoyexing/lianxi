@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    *{
+      margin: 0;
+      padding: 0;
+    }
+    #box{
+      width: 150px;
+      height: 200px;
+      position: relative;
+      border-radius: 5px;
+      background: #b6b6b6;
+      box-shadow: 0 0 5px #ddd;
+      left: -150px;
+      border: red;
+    }
+    #box span{
+      height: 60px;
+      width: 20px;
+      position: absolute;
+      right: -20px;
+      top: 60px;
+      background: #ddd;
+      color: #fff;
+      border-radius: 0 5px 5px 0;
+    }
+  </style>
+</head>
+<body>
+  <div id="box">
+    <span>分享到</span>
+  </div>
+  <script>
+    var box = document.getElementById('box')
+    var timer = null
+    box.onmouseover= function(){
+      move(0)
+    }
+    box.onmouseout = function(){
+      move(-150)
+    }
+// 将不同的变量提取成参数 
+    function move(target){
+      // 给定一个默认的条件
+      // 默认的情况的是目标点大于当前位置
+      var speed = 5 
+      // 如果当前的位置大于目标点 速度为负数
+      if(target < box.offsetLeft ){
+        speed = -5
+      }
+      // 开启定时器之前将定时器关闭
+      clearInterval(timer)
+      timer = setInterval(function(){
+        box.style.left = box.offsetLeft + speed + 'px'
+        if(Math.abs( target - box.offsetLeft) <= Math.abs(speed)){
+          clearInterval(timer)
+          box.style.left = target + 'px'
+        }
+      },50)
+    }
+
+    // 封装 ： 是将一样的代码合并在一起 将不同的变量提取成参数
+  </script>
+</body>
+</html>

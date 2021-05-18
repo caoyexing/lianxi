@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    // 是将主干线上的执行完毕之后在执行任务队列里的 先将延时器里的要执行的存到任务队列去 主干线的执行完毕之后 在执行任务 队里的程序
+  for (var i = 1; i <=3; i++) { // 4 4 4
+    setTimeout(function(){
+      console.log(i)
+    },0)
+  }
+
+  // 立即执行函数  // 0 1 2 3 
+  for (var j = 0; j <=3; j++) {
+   setTimeout((function(){
+    console.log(j)
+   })(j),0)
+    
+  }
+
+
+  </script>
+</body>
+</html>

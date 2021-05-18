@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    // 隐士类型转换 和字符串进行拼接
+    // console.log(5+'a')
+    // console.log(true + 'a')
+    // console.log(null +'a')
+    // console.log(undefined + 'a')
+    // var a;
+    // console.log(a+'a')
+    // var i = 0;
+    // while(i<10){
+    //   console.log('aaa')
+    //   i++;
+    // }
+    // console.log(i)
+    // 
+      // var obj={a:1}
+      // var obj1=obj;
+      // obj.b=obj={a:10}
+      // console.log(obj1,obj)
+
+
+
+      // 浅复制
+    /*   var obj= {
+        a:1,
+        b:2,
+      }
+      var obj1={}
+      for(var i in obj){
+        // console.log(i)
+        //  i   -> a,b
+        // 将obj中的值赋值给obj1
+        obj1[i]=obj[i]
+      }
+      obj.a=20
+      console.log(obj1)
+      console.log(obj.a) */
+
+
+
+      // 深复制
+
+      // var obj={
+      //   a:1,
+      //   b:{
+      //     a:1,
+      //     b:{
+      //       a:1
+      //     }
+      //   }
+      // }
+      // var obj1={}
+      // for( var i in obj){
+      //   obj1[i]=obj[i]
+      // }
+      // // 之间没有引用关系
+      // obj.a=20
+      // obj.b.a=20;
+      // console.log(obj1)
+
+      //a 前后指向的是两个地址   
+      // var a = { n:1}
+      // // 对象A是{n:1}
+      // a.x = a = {n:2}
+      // //从左到右的运算顺序 重新给a进行赋值  现在的a={n:2}
+      // // 其中的x是undefined
+      // alert(a.x)
+
+      var a = 1 
+      // !隔绝上面的代码
+      !function(){}() 
+  </script>
+</body>
+</html>

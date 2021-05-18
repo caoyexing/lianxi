@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    *{
+      margin: 0;
+      padding: 0;
+    }
+    .list{
+      width: 400px;
+    }
+    .list li{
+      /* height: 100px; */
+      display: flex;
+      border: 1px solid red;
+      padding: 10px;
+    }
+   .info{
+     width: 300px;
+     position: fixed;
+     right: 50px;
+     top: 200px;
+     background-color: yellowgreen;
+     /* border: 1px solid red; */
+   }
+  </style>
+</head>
+<body>
+  <div id="app">
+    <p><button class="ajax" @click='handelReq'>ajax</button></p>
+    <my-list :list='dataList' @myevent='handelFather'></my-list>
+    <my-info :son='des'></my-info>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script type="text/javascript">
+    Vue.component('myList', { 
+     props:['list'],
+      template:`
+        <div class='list'>
+          <ul>
+          <li v-for='(item,index) in list' :key='index' >
+            <img :src='item.poster'></img>
+            {{item.name}}
+            <div><button @click='handelInfo(item.synopsis)'>详情</button></div>
+          </li>    
+         </ul>
+          
+       </div>
+      `,
+      methods:{
+        handelInfo(data){
+          this.$emit('myevent',data)
+        }
+      }
+     }) 
+
+     Vue.component('myInfo',{
+       props:['son'],
+       template:`
+        <div class='info'>{{son}}</div>
+       `
+     })
+
+
+    var vm = new Vue({
+      el:"#app",
+      data:{
+        dataList:[],
+        des:''
+      },
+      methods:{
+        handelReq(){
+          fetch('./maizuo.json')
+          .then(res=>res.json())
+          .then((res)=>{
+            this.dataList = res.data.films
+          })
+        },
+        handelFather(data){
+         this.des = data
+         console.log(this.des)
+        }
+        
+      }
+    })
+  </script>
+</body>
+</html>
