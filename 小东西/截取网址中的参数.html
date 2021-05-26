@@ -35,7 +35,7 @@
       var str = url.split('?')[1].split('&')
       // [0] [1] 是 ？ 的前后的两部分 
       // console.log(url.split('?')[1])
-      console.log(str)
+      // console.log(str)
       
       // json的形式
       var json = {}
@@ -52,7 +52,7 @@
       return json
     }
   var s=  getParams(url)
-  console.log(s)
+  // console.log(s)
    /*  var url="http://www.taobao.com/index.php?keya=00&keyb=11&keyc=22";
 function parseQueryString(url){
   console.log(url)
@@ -70,6 +70,23 @@ var obj= parseQueryString(url)
 
 console.log(obj)
  */
+
+
+ var url = 'http://www.taobao.com/item.html?a=1&b=2&c=3&d=xxx&e'
+  function intercept(url){
+    var str = url.split('?')[1].split('&')
+    var json = {}
+    for(var i = 0 ; i < str.length ;i++){
+      var items = str[i].split('=')
+      json[items[0]] = items[1]
+      console.log(json[items[0]])
+    }
+    console.log(json)
+    return json
+
+  }
+
+  intercept(url)
   </script>
 </body>
 

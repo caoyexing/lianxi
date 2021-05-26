@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <input type="text" name="" id="">
+  <input type="checkbox">
+  <input type="radio">
+  <input type="checkbox">
+  <input type="checkbox">
+  <script type="text/javascript">
+  var domlist = document.getElementsByTagName('input')
+  var checkboxleng = []
+  var leng = domlist.length
+  
+  while(leng--){
+    if(domlist[leng].type === 'checkbox'){
+      checkboxleng.push(domlist[leng])
+    }
+  }
+  console.log(checkboxleng)
+  var foo = '11'+ 2 -"1"
+  console.log(foo)
+  console.log(typeof foo)//number
+
+  var a = new Object()
+  a.value = 1 
+  b = a
+  b.value = 2
+  console.log(a.value)
+  console.log(b.value)
+
+  var str = ['this','is','baidu','campus']
+  console.log(str.join(' '))
+
+  var arr1 = ['1','2','3']
+  var arr2 = ['4','5','6']
+  var arr3 = [...arr1,...arr2]
+  console.log(arr3)
+  var arr4 = arr1.concat(arr2)
+  console.log(arr4)
+  // 影响原数组
+  console.log(arr4.splice(1,1))
+  console.log(arr4)
+
+
+  </script>
+</body>
+</html>
