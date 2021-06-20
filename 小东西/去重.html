@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    let arr= [1,2,3,3]
+    // 存放新的数据
+    let n = []
+    Array.prototype.unip = function(){
+      for(var i = 0; i < this.length ; i++){
+        // console.log(this)//指向的是数组arr -1 没有
+        if(n.indexOf(arr[i]) === -1){
+          n.push(arr[i])
+        }
+      }
+      return n
+    }
+    var newArr = arr.unip(arr)
+    // console.log(newArr)
+
+
+    var a = 6
+    setTimeout(()=>{
+      // alert(a)
+      var a = 66
+    },1000)
+    a = 666
+    // alert(a) //666 undefined
+
+    function color(){
+      // console.log(this) //window
+    }
+
+    color()
+
+   
+    console.log(undefined + NaN)//NaN
+    console.log('undefined' + NaN) //undefinedNaN
+    console.log('234' + NaN)//234NaN
+    console.log(123 + NaN)//NaN
+    console.log(true + NaN) //NaN
+    console.log(false + NaN) //NaN
+  </script>
+</body>
+</html>

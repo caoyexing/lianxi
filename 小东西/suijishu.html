@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    // 
+    var arr =[]
+    function random(num1,num2){
+      var transition = num2 - num1 + 1
+      var res = Math.floor( Math.random() * transition + num1)
+      return res
+    }
+
+    for(var i =0; i< 10;i++){
+        arr.push(random(10,100))
+    }
+    arr.sort((a,b)=>{
+      return a-b
+    })
+    console.log(arr)
+
+  /*   // 纯手打，不谢。
+var randoms=[];
+while (true)
+{
+    var isExists = false;
+    // 获取一个10–100范围的数
+    var random = parseInt(10 + (90 - 10) * (Math.random()))
+    // 判断当前随机数是否已经存在
+    for (var i = 0; i < randoms.length; i++) {
+        if (random === randoms[i]) {
+            isExists = true;
+            break;
+        }
+    }
+    // 如果不存在，则添加进去
+    if (!isExists)
+        randoms.push(random);
+    // 如果有10位随机数了，就跳出
+    if (randoms.length === 10)
+        break;
+} */
+
+
+  </script>
+</body>
+</html>

@@ -14,6 +14,7 @@
     <!-- data  computed  -->
     <!-- 显示的组件 -->
     <component :is="change"></component>
+    <button @click= 'hello1(),hello2()'>hello</button>
 </div>
 
   <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
@@ -32,6 +33,14 @@
         one: {template: '<div>我是线路一</div>'},
         two: {template: '<div>我是线路二</div>'},
         thr: {template: '<div>我是线路三</div>'}
+      },
+      methods:{
+        hello1(){
+          console.log('hello1')
+        },
+        hello2(){
+          console.log('hello2')
+        }
       }
 })
   </script>

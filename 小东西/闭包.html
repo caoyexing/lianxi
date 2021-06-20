@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style type="text/css">
+    p {
+      background: gold;
+    }
+  </style>
+</head>
+
+<body onload="init()">
+  <p>产品1</p>
+  <p>产品2</p>
+  <p>产品3</p>
+  <p>产品4</p>
+  <p>产品5</p>
+  <script>
+    // 给每一个p 添加点击事件 bind
+    function init() {
+      var pAry = document.getElementsByTagName("p");
+
+      for (var i = 0; i < pAry.length; i++) {
+
+        pAry[i].onclick = function (i) {
+
+          console.log(i);
+          console.log(this)
+
+        }.bind(false,i)
+      }
+    }
+  </script>
+</body>
+
+</html>

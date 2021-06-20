@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div id="app">
+    <div>
+       <input type="radio"> 全选
+    </div>
+   <div>
+     <input type="radio" name="" id="">
+     
+   </div>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script type="text/javascript">
+    var vm = new Vue({
+      el:'#app',
+      data:{
+        list:[
+          {
+            name:'商品1',
+            number:1,
+            price:5,
+            id:1,
+            limit:5,
+            pic:'https://note.youdao.com/yws/public/resource/d25a848293401b1aa2fdf16373951525/xmlnote/CE0EBAB08D4C47719C8620F77CEC9818/1340'
+          },
+          {
+            name:'商品2',
+            number:2,
+            price:10,
+            id:2,
+            limit:8,
+            pic:'https://note.youdao.com/yws/public/resource/d25a848293401b1aa2fdf16373951525/xmlnote/WEBRESOURCEe02513e83a017b656226678b29db2996/1377'
+          },
+          {
+            name:'商品3',
+            number:3,
+            price:15,
+            id:3,
+            limit:10,
+            pic:'https://note.youdao.com/yws/public/resource/d25a848293401b1aa2fdf16373951525/xmlnote/WEBRESOURCEe02513e83a017b656226678b29db2996/1377'
+          }
+        ]
+      }
+    })
+  </script>
+</body>
+</html>
