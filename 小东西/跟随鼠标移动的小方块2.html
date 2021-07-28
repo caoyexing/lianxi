@@ -31,16 +31,19 @@
       var e = evt || event 
       var st = document.body.scrollTop || document.documentElement.scrollTop
 
-      // 鼠标懂动的时候 是在一起的 当鼠标完全不动的时候 就脱离了
+      // 鼠标不动的时候 是在一起的 当鼠标完全不动的时候 就脱离了 自己的中心的位置
       box.style.left = e.clientX -50 + 'px'
-      box.style.top = e.clientY -50  + st+ 'px'
-// 鼠标不动的时候 这个位置就是不动的 就是在浏览器的固定位置
+      // 有滚动条 但是没动 现在位置也是要有的st的高度 
+      box.style.top = e.clientY - 50 +st + 'px'
+     // 没有滚动 就是固定的位置 距离页面顶部的距离
+    //  存值 
       box_top = e.clientY - 50
     }
-    window.onscroll= function(){
+    window.onscroll= function(evt){
       var st = document.body.scrollTop || document.documentElement.scrollTop
+
       // 固定位置  + 滚动的距离
-      box.style.top =box_top+ st + 'px'
+      box.style.top = box_top + st + 'px'
     }
   </script>
 </body>

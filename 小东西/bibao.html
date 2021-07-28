@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    function test(fn){
+      var a = 1
+      fn()
+    }
+    const a= 2
+    function fn(){
+      console.log('a',a)
+    }
+    test(fn) // a 2
+
+    // fn 会去找定义的地方 上一层 全局的定义a
+    // 不是去找执行的地方
+  </script>
+</body>
+</html>

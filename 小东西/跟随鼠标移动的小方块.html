@@ -38,7 +38,7 @@
 // -25 是将鼠标在小方块的中间
       box.style.left= x -25+ 'px'
       box.style.top = y -25 + st+ 'px'
-      // 这个时候是不动的
+      // 这个时候是不动的 获取一次的值 
       box_top = e.clientY - 25
     }
 
@@ -46,6 +46,7 @@
     window.onscroll= function(){
       var st = document.documentElement.scrollTop || document.body.scrollTop
       // 当鼠标滚动的时候 小方块距离浏览器的距离  + 向上卷动的距离
+      // 
       box.style.top = box_top + st + 'px'
     }
   </script>

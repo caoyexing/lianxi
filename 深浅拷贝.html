@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    // 深拷贝
+  /*   let oldobj = {
+      name:'kerwin',
+      age:'16',
+      colors:['orange','red'],
+      friend:{name:'hello'}
+    }
+
+    function deepCopy(obj={}){
+      
+      if(typeof obj !== 'object' || obj == null){
+         return obj
+      }
+
+      let result ;
+      if(obj instanceof Array){
+        result = []
+      }else{
+        result ={}
+      }
+      for( let key in obj){
+        // 有key返回 true 没有返回false
+        if(obj.hasOwnProperty(key)){
+          //递归 
+          result[key] = deepCopy(obj[key])
+        }
+      }
+      return result
+    }
+
+    let newObj = deepCopy(oldobj)
+    newObj.friend.name = 'world'
+
+    console.log('oldobj',oldobj)
+
+    console.log('newObj',newObj)
+
+    let newObj2 = JSON.parse(JSON.stringify(oldobj))
+    newObj2.friend.name= 'nihao'
+    console.log(newObj2) */
+    
+    // 浅拷贝
+
+    let oldobj = {
+      name:'kerwin',
+      age:'16',
+      colors:['orange','red'],
+      friend:{name:'hello'}
+    }
+  let result  = {}
+   for( let key in oldobj){
+     result[key] = oldobj[key]
+   }
+   result.name = 'nihao'
+   console.log('new',result)
+   console.log('old',oldobj)
+
+    
+  </script>
+</body>
+</html>
